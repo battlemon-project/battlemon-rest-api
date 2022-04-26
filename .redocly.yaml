@@ -1,0 +1,14 @@
+apis:
+  battlemon-rest-api@1.0:
+    root: ./openapi/openapi.yaml
+lint:
+  extends:
+    - recommended
+  rules:
+    no-unused-components: warning
+features.openapi:
+  htmlTemplate: ./docs/index.html
+  theme:
+    colors:
+      primary:
+        main: "#32329f"
