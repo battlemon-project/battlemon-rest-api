@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    description: Id of sale
+    type: uuid
+    example: 9451ba6e-af8f-4e4d-ba5e-e88a1f11d218
+  prev_owner:
+    description: Previous owner of token
+    type: string
+    minLength: 2
+    example: alice.near
+  curr_owner:
+    description: Current owner of token
+    type: string
+    minLength: 2
+    example:
+      - bob.near
+      - foo.bar.near
+      - foo.bar.testnet
+  token_id:
+    description: Token id of token
+    type: string
+    minLength: 1
+    example:
+      - 1
+      - 2
+  price:
+    description: The selling price of token in yoctoNears
+    type: integer
+  date:
+    description: The date when deal have been done.
+    type: date

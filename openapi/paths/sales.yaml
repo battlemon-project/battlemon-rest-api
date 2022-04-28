@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Sales
+  summary: Get market sales
+  description: |
+    Get market sales with pagination
+  operationId: get_sales
+  parameters:
+    - name: limit
+      in: query
+      description: Limit sales
+      schema:
+        type: integer
+        default: 100
+    - name: offset
+      in: query
+      description: Make offset from begin of table with sales
+      schema:
+        type: integer
+        default: 0
+  #  security:
+  #    - main_auth:
+  #        - 'read:users'
+  #    - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Sale.yaml
+          example:
+            - id: 3185ec76-a9bb-4246-9abc-1e462b8d8b0e
+              prev_owner: alice.testnet
+              curr_owner: bob.testnet
+              token_id: "1"
+              price: 281500746514432
+              date: 2022-04-28T14:53:06.503184Z
+            - id: c3b433f0-0efa-415e-b74c-7226df4a1ec4
+              prev_owner: carol.testnet
+              curr_owner: billy.testnet
+              token_id: "2"
+              price: 10000000000000
+              date: 2022-04-23T11:03:06.238933Z
+    '500':
+      description: Internal Server Error
