@@ -1,0 +1,20 @@
+type: object
+properties:
+  history:
+    type: array
+    description: List of sales for arbitrary last days
+    items:
+      $ref: Sale.yaml
+  statistics:
+    type: object
+    description: Common statistics about sales
+    properties:
+      top_sale:
+        description: The deal's highest price for arbitrary days in yoctoNears
+        type: integer
+      total_number_of_sales:
+        description: The total quantity of sales for arbitrary days
+        type: integer
+      total_sale_volume:
+        description: The total sale's turnover for arbitrary days in yoctoNears
+        type: integer

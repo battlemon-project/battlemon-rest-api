@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Sales
+  summary: Get market statistic for sales
+  description: |
+    Get market statistics for sales for arbitrary amounts of last days.
+  operationId: get_paid
+  parameters:
+    - name: days
+      in: query
+      description: amount of days which is used for calculating report
+      schema:
+        type: integer
+        default: 1
+  #  security:
+  #    - main_auth:
+  #        - 'read:users'
+  #    - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/SaleStatistics.yaml
+          example:
+            history:
+              - curr_owner: bob.dev-20220428122624-64729788379126
+                date: '2022-04-28T14:53:06.503184Z'
+                id: 3185ec76-a9bb-4246-9abc-1e462b8d8b0e
+                prev_owner: alice.dev-20220428122624-64729788379126
+                price: 281500746514432
+                token_id: '1'
+            statistics:
+              top_sale: 281500746514432
+              total_number_of_sales: 1
+              total_sale_volume: 281500746514432
+    '500':
+      description: Internal Server Error

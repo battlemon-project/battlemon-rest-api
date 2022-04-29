@@ -28,6 +28,8 @@ paths:
     $ref: paths/health_check.yaml
   /sales:
     $ref: paths/sales.yaml
+  /paid:
+    $ref: paths/paid.yaml
 components:
 #  securitySchemes:
 #    main_auth:
