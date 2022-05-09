@@ -42,5 +42,13 @@ get:
               token_id: "2"
               price: 10000000000000
               date: 2022-04-23T11:03:06.238933Z
+    '400':
+      description: Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            error: "Query deserialize error: invalid digit found in string"
     '500':
       description: Internal Server Error
