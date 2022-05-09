@@ -35,5 +35,13 @@ get:
               top_sale: 281500746514432
               total_number_of_sales: 1
               total_sale_volume: 281500746514432
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            error: "Query deserialize error: invalid digit found in string"
     '500':
       description: Internal Server Error
