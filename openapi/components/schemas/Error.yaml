@@ -1,0 +1,6 @@
+type: object
+properties:
+  error:
+    description: Error
+    type: string
+    example: "Query deserialize error: invalid digit found in string"
