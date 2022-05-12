@@ -52,3 +52,9 @@ get:
             error: "Query deserialize error: invalid digit found in string"
     '500':
       description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            error: "Failed to get the sale's data from the database."
