@@ -25,7 +25,7 @@ properties:
       - 1
       - 2
   price:
-    description: The selling price of token in yoctoNears
+    description: The selling price of token in Nears
     type: integer
   date:
     description: The date when deal have been done.

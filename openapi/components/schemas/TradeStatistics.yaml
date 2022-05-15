@@ -2,19 +2,19 @@ type: object
 properties:
   history:
     type: array
-    description: List of sales for arbitrary last days
+    description: List of trades for arbitrary last days
     items:
       $ref: Sale.yaml
   statistics:
     type: object
-    description: Common statistics about sales
+    description: Common statistics about trades
     properties:
-      top_sale:
-        description: The deal's highest price for arbitrary days in yoctoNears
+      top_trade:
+        description: The trade's highest price for arbitrary days in Nears
         type: integer
-      total_number_of_sales:
-        description: The total quantity of sales for arbitrary days
+      total_number_of_trades:
+        description: The total quantity of trades for arbitrary days
         type: integer
-      total_sale_volume:
-        description: The total sale's turnover for arbitrary days in yoctoNears
+      total_trades_volume:
+        description: The total trade's turnover for arbitrary days in Nears
         type: integer
