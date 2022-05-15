@@ -1,9 +1,9 @@
 get:
   tags:
     - Sales
-  summary: Get market statistic for sales
+  summary: Get market statistic for trades
   description: |
-    Get market statistics for sales for arbitrary amounts of last days.
+    Get market trade's statistics for arbitrary amounts of last days.
   operationId: get_paid
   parameters:
     - name: days
@@ -12,6 +12,18 @@ get:
       schema:
         type: integer
         default: 1
+    - name: limit
+      in: query
+      description: Limit trades
+      schema:
+        type: integer
+        default: 100
+    - name: offset
+      in: query
+      description: Make offset from begin of table with trades
+      schema:
+        type: integer
+        default: 0
   #  security:
   #    - main_auth:
   #        - 'read:users'
@@ -22,7 +34,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/SaleStatistics.yaml
+            $ref: ../components/schemas/TradeStatistics.yaml
           example:
             history:
               - curr_owner: bob.dev-20220428122624-64729788379126
@@ -45,3 +57,9 @@ get:
             error: "Query deserialize error: invalid digit found in string"
     '500':
       description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            error: "Failed to get sale's data from the database."
