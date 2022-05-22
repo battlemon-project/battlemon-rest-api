@@ -1,0 +1,57 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Unique identifier of NFT Token
+    example: 3185ec76-a9bb-4246-9abc-1e462b8d8b0e
+  owner_id:
+    type: string
+    description: Unique identifier of NFT Token owner
+    example: alice.testnet
+  token_id:
+    type: string
+    description: Unique identifier of NFT Token
+    example: "1"
+  title:
+    type: string
+    nullable: true
+    description: Title of NFT Token
+    example: "Battlemon Token"
+  description:
+    type: string
+    nullable: true
+    description: Description of NFT Token
+    example: "Battlemon Token the best nft tokens in the world"
+  media:
+    type: string
+    nullable: true
+    description: Media's url of NFT Token (can be ipfs hash)
+    example: "https://thisislinktoimage.com/image.png"
+  media_hash:
+    type: string
+    nullable: true
+    description: Hash of NFT Token Media for validation purposes
+    example: "QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG"
+  copies:
+    type: string
+    nullable: true
+    description: Number of copies of NFT Token
+    example: 1
+  issue_at:
+    type: string
+    nullable: true
+    description: Date of issue of NFT Token
+    example: "2022-04-28T14:53:06.503184Z"
+  expire_at:
+    type: string
+    nullable: true
+    description: Date of expire of NFT Token
+    example: "2022-04-28T14:53:06.503184Z"
+  model:
+    type: object
+    description: Model of NFT Token
+    example: "Battlemon Token"
+  db_created_at:
+    type: string
+    description: Date of creation of NFT Token in database
+    example: "2022-04-28T14:53:06.503184Z"

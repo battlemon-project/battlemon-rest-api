@@ -21,6 +21,8 @@ externalDocs:
 tags:
   - name: Sales
     description: Operations about sales
+  - name: "NFT Tokens"
+    description: Operations about NFT Tokens
 servers:
   - url: 'https://api.battlemon.com/'
 paths:
@@ -30,6 +32,8 @@ paths:
     $ref: paths/sales.yaml
   /paid:
     $ref: paths/paid.yaml
+  /nft_tokens:
+    $ref: paths/nft_tokens.yaml
 components:
 #  securitySchemes:
 #    main_auth:

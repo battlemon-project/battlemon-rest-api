@@ -1,0 +1,153 @@
+get:
+  tags:
+    - "NFT Tokens"
+  summary: Get NFT Tokens
+  description: |
+    Get NFT Tokens with pagination and filters
+  operationId: get_nft_tokens
+  parameters:
+    - name: limit
+      in: query
+      description: Limit quantity of NFT Tokens
+      schema:
+        type: integer
+        default: 100
+    - name: offset
+      in: query
+      description: Make offset from begin of table with NFT Tokens
+      schema:
+        type: integer
+        default: 0
+    - name: owner_id
+      in: query
+      description: Filter by owner id
+      schema:
+        type: string
+    - name: token_id
+      in: query
+      description: Filter by token id
+      schema:
+        type: string
+  #    security:
+  #      - main_auth:
+  #          - 'read:users'
+  #      - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/NftToken.yaml
+          example:
+            - copies: null
+              db_created_at: '1812-10-22T20:44:45.622907Z'
+              description: null
+              expires_at: null
+              id: f59fe9d1-24ce-4574-ab65-4c141a2fcd89
+              issued_at: null
+              media: 9dejtfyghnu120wz6qm37845
+              media_hash: null
+              model:
+                cap: ARM1_Cap_ZA01
+                cloth: ARM1_Cloth_MA01
+                exo: ARM1_Exo_MA01
+                eyes: ARM1_Eyes_Z01
+                head: ARM1_Head_Z01
+                kind: lemon
+                teeth: ARM1_Teeth_Z01
+              owner_id: alice.near
+              title: null
+              token_id: '9031922062505226797'
+            - copies: null
+              db_created_at: '1880-08-16T12:46:30.184816Z'
+              description: null
+              expires_at: null
+              id: a1f71250-5ef3-4de7-8032-54a6e3aeb88d
+              issued_at: null
+              media: 0bnq3fermk7jphv815cs2z4g
+              media_hash: null
+              model:
+                cap: ARM1_Cap_ZA01
+                cloth: ARM1_Cloth_MA01
+                exo: ARM1_Exo_BA01
+                eyes: ARM1_Eyes_Z01
+                head: ARM1_Head_Z01
+                kind: lemon
+                teeth: ARM1_Teeth_Z01
+              owner_id: alice.near
+              title: null
+              token_id: '3472753616534098717'
+            - copies: null
+              db_created_at: '2151-05-14T00:39:47.775191Z'
+              description: null
+              expires_at: null
+              id: 48380b82-61e3-4a3a-a70f-a423e4c2e007
+              issued_at: null
+              media: fb1k93gwpz7c0e5nsq8tdvjm
+              media_hash: null
+              model:
+                cap: ARM1_Cap_ZA01
+                cloth: ARM1_Cloth_MA01
+                exo: ARM1_Exo_ZA01
+                eyes: ARM1_Eyes_Z01
+                head: ARM1_Head_Z01
+                kind: lemon
+                teeth: ARM1_Teeth_Z01
+              owner_id: alice.near
+              title: null
+              token_id: '6453258353284852292'
+            - copies: null
+              db_created_at: '2196-09-07T05:46:48.836557Z'
+              description: null
+              expires_at: null
+              id: 8bfd4818-444a-4418-b7d3-d83c4f4f9859
+              issued_at: null
+              media: 5jgy2x3zb9uwm6qt4ckd7pr1
+              media_hash: null
+              model:
+                cap: ARM1_Cap_ZA01
+                cloth: ARM1_Cloth_MA01
+                exo: ARM1_Exo_ZA01
+                eyes: ARM1_Eyes_Z01
+                head: ARM1_Head_Z01
+                kind: lemon
+                teeth: ARM1_Teeth_Z01
+              owner_id: alice.near
+              title: null
+              token_id: '3821577142026237634'
+            - copies: null
+              db_created_at: '2215-07-13T23:13:17.386016Z'
+              description: null
+              expires_at: null
+              id: 52129788-5e47-4958-aa09-3cf20f9e8d05
+              issued_at: null
+              media: 6rqcxdf8wjzmk137e0tg5phs
+              media_hash: null
+              model:
+                cap: ARM1_Cap_ZA01
+                cloth: ARM1_Cloth_MA01
+                exo: ARM1_Exo_ZA01
+              eyes: ARM1_Eyes_Z01
+              head: ARM1_Head_Z01
+              kind: lemon
+              teeth: ARM1_Teeth_Z01
+              owner_id: alice.near
+              title: null
+              token_id: '5831349044533302588'
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            error: "Query deserialize error: invalid digit found in string"
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            error: "Failed to get the NFT Token's data from the database."
