@@ -128,10 +128,10 @@ get:
                 cap: ARM1_Cap_ZA01
                 cloth: ARM1_Cloth_MA01
                 exo: ARM1_Exo_ZA01
-              eyes: ARM1_Eyes_Z01
-              head: ARM1_Head_Z01
-              kind: lemon
-              teeth: ARM1_Teeth_Z01
+                eyes: ARM1_Eyes_Z01
+                head: ARM1_Head_Z01
+                kind: lemon
+                teeth: ARM1_Teeth_Z01
               owner_id: alice.near
               title: null
               token_id: '5831349044533302588'
