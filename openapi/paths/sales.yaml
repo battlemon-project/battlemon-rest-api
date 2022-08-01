@@ -18,6 +18,11 @@ get:
       schema:
         type: integer
         default: 0
+    - name: token_id
+      in: query
+      description: Filter by token id
+      schema:
+        type: string
   #  security:
   #    - main_auth:
   #        - 'read:users'

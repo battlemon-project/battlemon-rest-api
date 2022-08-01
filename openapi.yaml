@@ -1,0 +1,426 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: api.battlemon.com
+  termsOfService: https://battlemon.com/terms/
+  contact:
+    email: contact@example.com
+    url: https://battlemon.com/contact
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: https://redocly.github.io/openapi-template/logo.png
+  description: |
+    This is an **alpha** version of Battlemon API.
+externalDocs:
+  description: If you find error please make pull request or issue.
+  url: https://github.com/battlemon-project/battlemon-rest-api-specs
+tags:
+  - name: Sales
+    description: Operations about sales
+  - name: NFT Tokens
+    description: Operations about NFT Tokens
+servers:
+  - url: https://api.battlemon.com/
+paths:
+  /health_check:
+    get:
+      tags:
+        - Health Check
+      summary: health check
+      description: Return whether service health or not
+      operationId: health_check
+      responses:
+        '200':
+          description: OK
+  /sales:
+    get:
+      tags:
+        - Sales
+      summary: Get market sales
+      description: |
+        Get market sales with pagination
+      operationId: get_sales
+      parameters:
+        - name: limit
+          in: query
+          description: Limit sales
+          schema:
+            type: integer
+            default: 100
+        - name: offset
+          in: query
+          description: Make offset from begin of table with sales
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+              example:
+                - id: 3185ec76-a9bb-4246-9abc-1e462b8d8b0e
+                  prev_owner: alice.testnet
+                  curr_owner: bob.testnet
+                  token_id: '1'
+                  price: 281500746514432
+                  date: '2022-04-28T14:53:06.503184Z'
+                - id: c3b433f0-0efa-415e-b74c-7226df4a1ec4
+                  prev_owner: carol.testnet
+                  curr_owner: billy.testnet
+                  token_id: '2'
+                  price: 10000000000000
+                  date: '2022-04-23T11:03:06.238933Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: 'Query deserialize error: invalid digit found in string'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Failed to get the sale's data from the database.
+  /paid:
+    get:
+      tags:
+        - Sales
+      summary: Get market statistic for trades
+      description: |
+        Get market trade's statistics for arbitrary amounts of last days.
+      operationId: get_paid
+      parameters:
+        - name: days
+          in: query
+          description: amount of days which is used for calculating report
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: Limit trades
+          schema:
+            type: integer
+            default: 100
+        - name: offset
+          in: query
+          description: Make offset from begin of table with trades
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeStatistics'
+              example:
+                history:
+                  - curr_owner: bob.dev-20220428122624-64729788379126
+                    date: '2022-04-28T14:53:06.503184Z'
+                    id: 3185ec76-a9bb-4246-9abc-1e462b8d8b0e
+                    prev_owner: alice.dev-20220428122624-64729788379126
+                    price: 281500746514432
+                    token_id: '1'
+                statistics:
+                  top_sale: 281500746514432
+                  total_number_of_sales: 1
+                  total_sale_volume: 281500746514432
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: 'Query deserialize error: invalid digit found in string'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Failed to get sale's data from the database.
+  /nft_tokens:
+    get:
+      tags:
+        - NFT Tokens
+      summary: Get NFT Tokens
+      description: |
+        Get NFT Tokens with pagination and filters
+      operationId: get_nft_tokens
+      parameters:
+        - name: limit
+          in: query
+          description: Limit quantity of NFT Tokens
+          schema:
+            type: integer
+            default: 100
+        - name: offset
+          in: query
+          description: Make offset from begin of table with NFT Tokens
+          schema:
+            type: integer
+            default: 0
+        - name: owner_id
+          in: query
+          description: Filter by owner id
+          schema:
+            type: string
+        - name: token_id
+          in: query
+          description: Filter by token id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftToken'
+              example:
+                - copies: null
+                  db_created_at: '1812-10-22T20:44:45.622907Z'
+                  description: null
+                  expires_at: null
+                  id: f59fe9d1-24ce-4574-ab65-4c141a2fcd89
+                  issued_at: null
+                  media: 9dejtfyghnu120wz6qm37845
+                  media_hash: null
+                  model:
+                    cap: ARM1_Cap_ZA01
+                    cloth: ARM1_Cloth_MA01
+                    exo: ARM1_Exo_MA01
+                    eyes: ARM1_Eyes_Z01
+                    head: ARM1_Head_Z01
+                    kind: lemon
+                    teeth: ARM1_Teeth_Z01
+                  owner_id: alice.near
+                  title: null
+                  token_id: '9031922062505226797'
+                - copies: null
+                  db_created_at: '1880-08-16T12:46:30.184816Z'
+                  description: null
+                  expires_at: null
+                  id: a1f71250-5ef3-4de7-8032-54a6e3aeb88d
+                  issued_at: null
+                  media: 0bnq3fermk7jphv815cs2z4g
+                  media_hash: null
+                  model:
+                    cap: ARM1_Cap_ZA01
+                    cloth: ARM1_Cloth_MA01
+                    exo: ARM1_Exo_BA01
+                    eyes: ARM1_Eyes_Z01
+                    head: ARM1_Head_Z01
+                    kind: lemon
+                    teeth: ARM1_Teeth_Z01
+                  owner_id: alice.near
+                  title: null
+                  token_id: '3472753616534098717'
+                - copies: null
+                  db_created_at: '2151-05-14T00:39:47.775191Z'
+                  description: null
+                  expires_at: null
+                  id: 48380b82-61e3-4a3a-a70f-a423e4c2e007
+                  issued_at: null
+                  media: fb1k93gwpz7c0e5nsq8tdvjm
+                  media_hash: null
+                  model:
+                    cap: ARM1_Cap_ZA01
+                    cloth: ARM1_Cloth_MA01
+                    exo: ARM1_Exo_ZA01
+                    eyes: ARM1_Eyes_Z01
+                    head: ARM1_Head_Z01
+                    kind: lemon
+                    teeth: ARM1_Teeth_Z01
+                  owner_id: alice.near
+                  title: null
+                  token_id: '6453258353284852292'
+                - copies: null
+                  db_created_at: '2196-09-07T05:46:48.836557Z'
+                  description: null
+                  expires_at: null
+                  id: 8bfd4818-444a-4418-b7d3-d83c4f4f9859
+                  issued_at: null
+                  media: 5jgy2x3zb9uwm6qt4ckd7pr1
+                  media_hash: null
+                  model:
+                    cap: ARM1_Cap_ZA01
+                    cloth: ARM1_Cloth_MA01
+                    exo: ARM1_Exo_ZA01
+                    eyes: ARM1_Eyes_Z01
+                    head: ARM1_Head_Z01
+                    kind: lemon
+                    teeth: ARM1_Teeth_Z01
+                  owner_id: alice.near
+                  title: null
+                  token_id: '3821577142026237634'
+                - copies: null
+                  db_created_at: '2215-07-13T23:13:17.386016Z'
+                  description: null
+                  expires_at: null
+                  id: 52129788-5e47-4958-aa09-3cf20f9e8d05
+                  issued_at: null
+                  media: 6rqcxdf8wjzmk137e0tg5phs
+                  media_hash: null
+                  model:
+                    cap: ARM1_Cap_ZA01
+                    cloth: ARM1_Cloth_MA01
+                    exo: ARM1_Exo_ZA01
+                  eyes: ARM1_Eyes_Z01
+                  head: ARM1_Head_Z01
+                  kind: lemon
+                  teeth: ARM1_Teeth_Z01
+                  owner_id: alice.near
+                  title: null
+                  token_id: '5831349044533302588'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: 'Query deserialize error: invalid digit found in string'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Failed to get the NFT Token's data from the database.
+components:
+  schemas:
+    Sale:
+      type: object
+      properties:
+        id:
+          description: Id of sale
+          type: uuid
+          example: 9451ba6e-af8f-4e4d-ba5e-e88a1f11d218
+        prev_owner:
+          description: Previous owner of token
+          type: string
+          minLength: 2
+          example: alice.near
+        curr_owner:
+          description: Current owner of token
+          type: string
+          minLength: 2
+          example:
+            - bob.near
+            - foo.bar.near
+            - foo.bar.testnet
+        token_id:
+          description: Token id of token
+          type: string
+          minLength: 1
+          example:
+            - 1
+            - 2
+        price:
+          description: The selling price of token in Nears
+          type: integer
+        date:
+          description: The date when deal have been done.
+          type: date
+    Error:
+      type: object
+      properties:
+        error:
+          description: Error description
+          type: string
+          example: 'Query deserialize error: invalid digit found in string'
+    TradeStatistics:
+      type: object
+      properties:
+        history:
+          type: array
+          description: List of trades for arbitrary last days
+          items:
+            $ref: '#/components/schemas/Sale'
+        statistics:
+          type: object
+          description: Common statistics about trades
+          properties:
+            top_trade:
+              description: The trade's highest price for arbitrary days in Nears
+              type: integer
+            total_number_of_trades:
+              description: The total quantity of trades for arbitrary days
+              type: integer
+            total_trades_volume:
+              description: The total trade's turnover for arbitrary days in Nears
+              type: integer
+    NftToken:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of NFT Token
+          example: 3185ec76-a9bb-4246-9abc-1e462b8d8b0e
+        owner_id:
+          type: string
+          description: Unique identifier of NFT Token owner
+          example: alice.testnet
+        token_id:
+          type: string
+          description: Unique identifier of NFT Token
+          example: '1'
+        title:
+          type: string
+          nullable: true
+          description: Title of NFT Token
+          example: Battlemon Token
+        description:
+          type: string
+          nullable: true
+          description: Description of NFT Token
+          example: Battlemon Token the best nft tokens in the world
+        media:
+          type: string
+          nullable: true
+          description: Media's url of NFT Token (can be ipfs hash)
+          example: https://thisislinktoimage.com/image.png
+        media_hash:
+          type: string
+          nullable: true
+          description: Hash of NFT Token Media for validation purposes
+          example: QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+        copies:
+          type: string
+          nullable: true
+          description: Number of copies of NFT Token
+          example: 1
+        issue_at:
+          type: string
+          nullable: true
+          description: Date of issue of NFT Token
+          example: '2022-04-28T14:53:06.503184Z'
+        expire_at:
+          type: string
+          nullable: true
+          description: Date of expire of NFT Token
+          example: '2022-04-28T14:53:06.503184Z'
+        model:
+          type: object
+          description: Model of NFT Token
+          example: Battlemon Token
+        db_created_at:
+          type: string
+          description: Date of creation of NFT Token in database
+          example: '2022-04-28T14:53:06.503184Z'
